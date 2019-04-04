@@ -2,3 +2,14 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your JavaScript code.
+$(document).ready(function () {
+    $('#tree').tree({
+        uiLibrary: 'bootstrap',
+        dataSource: '/Home/GetNav',
+        primaryKey: 'id',
+        textField: 'name',
+        select: function (a, b, c) {
+            alert("did thing" + a);
+        }
+    });
+});

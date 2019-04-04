@@ -10,6 +10,11 @@ namespace BacNetTool.Controllers
 {
     public class HomeController : Controller
     {
+        private BACNet_dbContext _context;
+        public HomeController(BACNet_dbContext context)
+        {
+            _context = context;
+        }
         public IActionResult Index()
         {
             return View();
@@ -38,6 +43,13 @@ namespace BacNetTool.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        [HttpGet]
+        public ActionResult GetNav()
+        {
+            var devices = _context.Device.ToList();
+            return Json(devices);
         }
     }
 }
