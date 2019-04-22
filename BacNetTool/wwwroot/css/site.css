@@ -35,3 +35,56 @@ body {
         display: none;
     }
 }
+
+#tree.gj-tree-bootstrap-3 ul.gj-list-bootstrap li {
+    background-color: #666;
+    color: lightgray;
+    padding: 10px;
+    border-bottom: 1px solid lightgray;
+    margin: 0;
+}
+
+.well {
+    background-color: lightslategray;
+    margin: 0;
+    border: none;
+    border-radius: 0;
+}
+
+[ng-cloak] {
+    display: none;
+}
+
+.input-group .form-control {
+    background-color: lightgray;
+}
+
+form .ng-dirty {
+    border-radius: 5px;
+    box-shadow: 0 0 3px 3px gold;
+}
+
+    form .ng-dirty.ng-invalid, form .ng-invalid {
+        box-shadow: 0 0 3px 3px red;
+    }
+
+form.ng-dirty, form.ng-invalid {
+    border: none;
+    box-shadow: none;
+}
+
+form fieldset {
+    border: none;
+}
+
+form .input-group {
+    margin-bottom: 20px;
+}
+
+ul.gj-list.gj-list-bootstrap.list-group {
+    margin: 10px;
+}
+
+.st-value {
+    font-size: 20px;
+}

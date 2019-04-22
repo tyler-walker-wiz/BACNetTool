@@ -3,7 +3,8 @@
         selected: Nav;
         mode = Mode.view;
         navTree: Nav[] = [];
-        constructor(private $scope: ng.IScope) {
+        editForm: ng.IFormController;
+        constructor(private $scope: ng.IScope, private $http: ng.IHttpService) {
             $scope["d"] = this;
             this.init();
         }
@@ -16,7 +17,7 @@
                 textField: 'objectName',
                 childrenField: 'inverseObjectTypeNavigation',
                 select: (a, b, c: string) => {
-                    me.setSelected(me.navTree.filter(n=>n.id == c)[0]);
+                    me.setSelected(me.navTree.filter(n => n.id == c)[0]);
                     me.$scope.$apply();
                 }
             });
@@ -40,6 +41,23 @@
         }
         isNae = (nav: Nav) => {
             return nav.deviceType === DeviceType.Nae;
+        }
+
+        submitChanges = () => {
+            let data = {
+                vendorName: this.editForm.vendorName.$modelValue,
+                objectName: this.editForm.objectName.$modelValue,
+                id: this.selected.id
+            }
+            let request = this.$http({
+                method: 'post',
+                url: '/Home/SubmitDevice',
+                data: $.param(data),
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+
+            }).then((p) => alert("Submitted!"));
+            request.catch((r) => alert(r));
+            this.editForm.$setPristine();
         }
     }
     interface IPropPage {

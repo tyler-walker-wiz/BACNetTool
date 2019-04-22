@@ -15,7 +15,7 @@
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
-    
+
 </head>
 <body>
     <nav id="mainNav" class="navbar navbar-inverse navbar-fixed-top">
@@ -32,8 +32,8 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="About">Search</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Admin</a></li>
                 </ul>
                 <partial name="_LoginPartial" />
             </div>
@@ -42,10 +42,10 @@
 
     <partial name="_CookieConsentPartial" />
 
-    <div class="container body-content">
+    <div>
         @RenderBody()
         <hr />
-        <footer>
+        <footer style="margin:20px;">
             <p>&copy; 2019 - BACNetTool</p>
         </footer>
     </div>

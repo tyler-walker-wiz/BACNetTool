@@ -3,24 +3,32 @@
 }
 
 <div ng-app="main-app" ng-controller="Main">
-    <div style="display:flex">
-        <div id="tree" class="pull-left"></div>
-        <div class="container well">
-            <h4>Properties {{d.title}}</h4>
+    <div style="display:flex" ng-cloak>
+        <div style="flex: 15%;background-color: #666" id="tree" class="pull-left"></div>
+        <div class="well" style="flex: 85%;">
+            <h2>Properties {{d.title}}</h2>
+            <hr />
             <button ng-if="d.selected" class="btn glyphicon glyphicon-edit" style="float:right" ng-click="d.toggleEdit()"></button>
             <div ng-if="!d.isEditMode()">
                 <div ng-if="d.selected">
                     <h3>This is device {{d.selected.objectName}}.</h3>
-                    <div ng-if="d.selected.vendorName">IP: {{d.selected.vendorName}}</div>
+                    <div class="st-value" ng-if="d.selected.vendorName">IP: {{d.selected.vendorName}}</div>
                 </div>
             </div>
             <div ng-if="d.isEditMode()">
                 <h3>This is device {{d.selected.objectName}}.</h3>
-                <form id="editForm" style="margin: 20px">
-                    <div class="input-group">
-                        <label class="control-label">Object Name</label>
-                        <input class="form-control" ng-model="d.selected.objectName" />
-                    </div>
+                <form name="d.editForm" ng-submit="d.submitChanges()" style="margin: 20px">
+                    <fieldset>
+                        <div class="input-group">
+                            <label class="control-label">Object Name</label>
+                            <input class="form-control" name="objectName" ng-model="d.selected.objectName" />
+                        </div>
+                        <div class="input-group">
+                            <label class="control-label">IP Address</label>
+                            <input class="form-control" name="vendorName" ng-model="d.selected.vendorName" />
+                        </div>
+                    </fieldset>
+                    <button type="submit" ng-disabled="!d.editForm.$dirty" style="margin-top:100px" class="btn btn-default pull-left">Submit</button>
                 </form>
             </div>
         </div>

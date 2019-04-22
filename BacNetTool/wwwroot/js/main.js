@@ -1,9 +1,10 @@
 var BACNet;
 (function (BACNet) {
     var Main = /** @class */ (function () {
-        function Main($scope) {
+        function Main($scope, $http) {
             var _this = this;
             this.$scope = $scope;
+            this.$http = $http;
             this.mode = Mode.view;
             this.navTree = [];
             this.setSelected = function (select) {
@@ -22,6 +23,21 @@ var BACNet;
             };
             this.isNae = function (nav) {
                 return nav.deviceType === DeviceType.Nae;
+            };
+            this.submitChanges = function () {
+                var data = {
+                    vendorName: _this.editForm.vendorName.$modelValue,
+                    objectName: _this.editForm.objectName.$modelValue,
+                    id: _this.selected.id
+                };
+                var request = _this.$http({
+                    method: 'post',
+                    url: '/Home/SubmitDevice',
+                    data: $.param(data),
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                }).then(function (p) { return alert("Submitted!"); });
+                request.catch(function (r) { return alert(r); });
+                _this.editForm.$setPristine();
             };
             $scope["d"] = this;
             this.init();
